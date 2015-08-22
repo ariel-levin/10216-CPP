@@ -25,12 +25,14 @@ public:
 	void setJudge(const Judge& judge);
 	void setStartTime(const tm& startTime);
 	void setEndTime(const tm& endDate);
+	void setInGame(bool gameOn);
 
 	const Team& getTeam1() const { return team1; };
 	const Team& getTeam2() const { return team2; };
 	const Judge& getJudge() const { return judge; };
 	const tm& getStartTime() const { return startTime; };
 	const tm* getEndTime() const { return endTime; };
+	const bool isGameOn() const { return gameOn; };
 
 	friend ostream& operator<<(ostream& os, const Game& g);
 
@@ -42,6 +44,7 @@ private:
 	Judge judge;
 	tm startTime;
 	tm* endTime;
+	bool gameOn;
 
 };
 

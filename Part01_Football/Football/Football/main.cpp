@@ -55,13 +55,12 @@ int main()
 	Game game1(team1, team2, judge1, tm{ 0, 0, 21, 13, 8, 2015 });
 	Game game2(team1, team2, judge2, tm{ 0, 0, 21, 23, 8, 2015 });
 
-	game1.start();
-	judge1.whistle();
-	game1.end();
+	game1.getJudge().whistle();		// for start game
+	game1.getJudge().whistle();		// for end game
 
-	game2.start();
-	judge2.redCard();
-	game2.end();
+	game2.getJudge().whistle();		// for start game
+	game2.getJudge().redCard();
+	game2.getJudge().whistle();		// for end game
 
 	League league1("Champions League", tm{ 0, 0, 0, 1, 9, 2015 }, tm{ 0, 0, 0, 1, 10, 2015 });
 
