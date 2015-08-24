@@ -10,7 +10,7 @@ using namespace std;
 class Player : public Employee
 {
 public:
-	const static enum POSITION { GK, CB, LB, RB, LWB, RWB, SW, DM, CM, AM, LW, RW, CF, WF };
+	static const enum POSITION { GK, CB, LB, RB, LWB, RWB, SW, DM, CM, AM, LW, RW, CF, WF };
 
 	Player(const Employee& emp, POSITION pos, int rank);
 
@@ -42,11 +42,11 @@ private:
 
 const char* getPositionName() const { return posName[pos]; };
 
-const char* posName[14] = { "Goalkeeper", "Center-back", "Left Full-back",
-							"Right Full-back", "Left Wing-back", "Right Wing-back",
-							"Sweeper", "Defending midfielder", "Central midfielder",
-							"Attacking midfielder", "Left Wide midfielders",
-							"Right Wide midfielders", "Center-forward",
-							"Withdrawn striker forward" };
+static const char* posName[] = {	"Goalkeeper", "Center-back", "Left Full-back",
+									"Right Full-back", "Left Wing-back", "Right Wing-back",
+									"Sweeper", "Defending midfielder", "Central midfielder",
+									"Attacking midfielder", "Left Wide midfielders",
+									"Right Wide midfielders", "Center-forward",
+									"Withdrawn striker forward" };
 
 */

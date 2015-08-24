@@ -11,6 +11,7 @@ class Employee : public Person
 {
 public:
 	Employee(const Person& person, int salary, int bonus);
+	virtual ~Employee();
 
 	const Employee& operator++();
 	bool operator<(const Employee& emp);

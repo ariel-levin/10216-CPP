@@ -12,7 +12,7 @@ class Person
 public:
 	Person(int id, const char* name, const tm& birthdate, const char* country);
 	Person(const Person& other);
-	~Person();
+	virtual ~Person();
 
 	const Person& operator=(const Person& other);
 

@@ -12,7 +12,7 @@ class Sponsor
 public:
 	Sponsor(int investAmount, const tm& startDate, const tm* endDate = nullptr);
 	Sponsor(const Sponsor& other);
-	~Sponsor();
+	virtual ~Sponsor();
 
 	const Sponsor& operator=(const Sponsor& other);
 
