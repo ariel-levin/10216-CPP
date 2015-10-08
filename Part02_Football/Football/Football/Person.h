@@ -9,7 +9,7 @@ class Person
 public:
 	Person(const char* name, int age);
 	Person(const Person& other);
-	~Person();
+	virtual ~Person();
 	Person& operator=(const Person& other);
 
 	const char* getName() const;
@@ -17,18 +17,17 @@ public:
 
 	int getAge() const;
 	void setAge(int age);
-
-	friend ostream& operator<<(ostream& os, const Person& league)
+	virtual void toOs(ostream os) const {};
+	friend ostream& operator<<(ostream& os, const Person& person)
 	{
-		os << "No Implementation" << std::endl;
+		os << "Name: " << person.name << ", Age: " << person.age << endl;
+		//person.toOs(os);
 		return os;
 	}
-
 
 private:
 	char* name;
 	int age;
-
 
 };
 

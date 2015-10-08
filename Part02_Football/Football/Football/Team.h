@@ -13,13 +13,13 @@ public:
 	Team(const Stadium& stadium, int numberOfStaff, const char* name);
 	Team(const Team& other);
 	~Team();
-	Team& operator=(const Person&other);
+	Team& operator=(const Team& other);
 
 	const Team& operator+=(const StaffMember& staffMember);
 	const Team& operator-=(const StaffMember& staffMember);
 
 	void addStaff(const StaffMember& staffmember);
-	const StaffMember& getStaffMember(const char* name) const;
+	const StaffMember* getStaffMember(const char* name) const;
 	void removeStaffMember(const char* name);
 
 	const Stadium getStadium() const;
@@ -37,9 +37,11 @@ public:
 private:
 	char* name;
 	int numberOfStaff;
-	StaffMember* staff;
+	StaffMember** staff;
 	Stadium stadium;
 
+	void setStaff(StaffMember*const* staff, int numberOfStaff);
+	int getStaffMemberIndex(const char* name) const;
 
 };
 

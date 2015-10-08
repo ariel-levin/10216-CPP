@@ -6,7 +6,7 @@ using namespace std;
 
 #include "Person.h"
 
-class Referee:Person
+class Referee: public Person
 {
 public:
 	enum Position
@@ -20,17 +20,17 @@ public:
 	
 	Position getPosition() const;
 	void setPosition(Position position);
+	virtual void toOs(ostream os) const;
 
-	friend ostream& operator<<(ostream& os, const Referee& league)
-	{
-		os << "No Implementation" << std::endl;
-		return os;
-	}
-
+	//friend ostream& operator<<(ostream& os, const Referee& referee)
+	//{
+	//	os << (Person)referee << endl;
+	//	os << "Position: " << referee.position << endl;
+	//	return os;
+	//}
 
 private:
 	Position position;
-
 
 };
 

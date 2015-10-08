@@ -38,7 +38,7 @@
   <Class Name="Person" Collapsed="true">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAEAAAAAAQAAAAAAAAAAAAAAEAABEIAAkAAAAAAA=</HashCode>
+      <HashCode>AIAAAEAAEAAAQAAAAAAAAAAAAAAEAABEIAAkAAAAAAA=</HashCode>
       <FileName>Person.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,7 +52,7 @@
   <Class Name="Referee" Collapsed="true">
     <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAAAAAIAACAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAEAAAAAAAAAAAIAACAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Referee.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,14 +66,14 @@
   <Class Name="StaffMember" Collapsed="true">
     <Position X="1.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAgAAABAACAAAAAgAAAAAAAEBAAAAA=</HashCode>
+      <HashCode>AAEAAAAAEAAAAAAgAAABAACAAAAAgAAAAAAAEBAAAAA=</HashCode>
       <FileName>StaffMember.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Team" Collapsed="true">
     <Position X="9.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAJEAAACAIQAAAAAEAABEEAAkAAAAAAE=</HashCode>
+      <HashCode>CAAAAAAAAAAAAJEgAACAIQAAAAAEAABEEAAkAAAAAAE=</HashCode>
       <FileName>Team.h</FileName>
     </TypeIdentifier>
   </Class>

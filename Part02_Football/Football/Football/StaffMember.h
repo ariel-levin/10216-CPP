@@ -6,7 +6,7 @@ using namespace std;
 
 #include "Person.h"
 
-class StaffMember:Person
+class StaffMember: public Person
 {
 public:
 	StaffMember(const Person& person, int sallary, int yearsOfExperience);// : Person(person), sallary(sallary), yearsOfExperience(yearsOfExperience){};
@@ -16,12 +16,14 @@ public:
 
 	int getYearsOfExperience() const;
 	void setYearsOfExperience(int yearsOfExperience);
+	virtual void toOs(ostream os) const;
 
-	friend ostream& operator<<(ostream& os, const StaffMember& league)
-	{
-		os << "No Implementation" << std::endl;
-		return os;
-	}
+	//friend ostream& operator<<(ostream& os, const StaffMember& staffMember)
+	//{
+	//	os << (Person)staffMember << endl;
+	//	os << "Sallary: " << staffMember.sallary << ", Years Of Experience: " << staffMember.yearsOfExperience << endl;
+	//	return os;
+	//}
 
 private:
 	int sallary;

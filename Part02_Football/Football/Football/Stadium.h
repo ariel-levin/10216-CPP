@@ -2,6 +2,7 @@
 #define _STADIUM_H
 
 #include <iostream>
+
 using namespace std;
 
 class Stadium
@@ -23,7 +24,7 @@ public:
 
 	friend ostream& operator<<(ostream& os, const Stadium& league)
 	{
-		os << "No Implementation" << std::endl;
+		os << "League - Name: " << league.name << ", Number Of Seats: " << league.numberOfSeats << ", Location: " << league.location << endl;
 		return os;
 	}
 
