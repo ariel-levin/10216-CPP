@@ -4,16 +4,14 @@
 #include "Coach.h"
 #include "Player.h"
 
-class CoachPlayer:public Coach, public Player
+class CoachPlayer: public Player, public Coach
 {
 public:
 	CoachPlayer(const Player& player, const Coach& coach);
 
-	friend std::ostream& operator<<(std::ostream& os, const CoachPlayer& coachPlayer)
-	{
-		os << "No Implementation" << std::endl;
-		return os;
-	}
+	virtual StaffMember* clone() const;
+
+	virtual void toOs(ostream& os) const;
 
 private:
 

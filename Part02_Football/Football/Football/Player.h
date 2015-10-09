@@ -25,11 +25,9 @@ public:
 	int getNumber() const;
 	void setNumber(int number);
 
-	friend ostream& operator<<(ostream& os, const Player& league)
-	{
-		os << "No Implementation" << std::endl;
-		return os;
-	}
+	virtual void toOs(ostream& os) const;
+
+	virtual StaffMember* clone() const;
 
 private:
 	Position position;

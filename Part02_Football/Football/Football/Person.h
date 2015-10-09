@@ -10,7 +10,7 @@ public:
 	Person(const char* name, int age);
 	Person(const Person& other);
 	virtual ~Person();
-	Person& operator=(const Person& other);
+	virtual Person& operator=(const Person& other);
 
 	bool operator==(const Person& other) const;
 

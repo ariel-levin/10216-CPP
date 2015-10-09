@@ -12,7 +12,7 @@ Person::Person(const char* name, int age) : name(NULL)
 	this->id = ++counter;
 }
 
-Person::Person(const Person & other) : name(NULL)
+Person::Person(const Person& other) : name(NULL)
 {
 	*this = other;
 }
@@ -22,7 +22,7 @@ Person::~Person()
 	delete[] name;
 }
 
-Person& Person::operator=(const Person & other)
+Person& Person::operator=(const Person& other)
 {
 	if (this != &other)
 	{
@@ -33,7 +33,7 @@ Person& Person::operator=(const Person & other)
 	return *this;
 }
 
-bool Person::operator==(const Person & other) const
+bool Person::operator==(const Person& other) const
 {
 	return this->id == other.id;
 }
@@ -49,8 +49,6 @@ void Person::setName(const char* name)
 	{
 		delete[] this->name;
 		this->name = strdup(name);
-		//this->name = new char[strlen(name) + 1];
-		//strcpy(this->name, name);
 	}
 }
 

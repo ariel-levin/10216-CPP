@@ -9,7 +9,7 @@ using namespace std;
 class StaffMember: public Person
 {
 public:
-	StaffMember(const Person& person, int sallary, int yearsOfExperience);// : Person(person), sallary(sallary), yearsOfExperience(yearsOfExperience){};
+	StaffMember(const Person& person, int sallary, int yearsOfExperience);
 	
 	int getSallary() const;
 	void setSallary(int sallary);
@@ -18,12 +18,7 @@ public:
 	void setYearsOfExperience(int yearsOfExperience);
 	virtual void toOs(ostream& os) const;
 
-	//friend ostream& operator<<(ostream& os, const StaffMember& staffMember)
-	//{
-	//	os << (Person)staffMember << endl;
-	//	os << "Sallary: " << staffMember.sallary << ", Years Of Experience: " << staffMember.yearsOfExperience << endl;
-	//	return os;
-	//}
+	virtual StaffMember* clone() const;
 
 private:
 	int sallary;

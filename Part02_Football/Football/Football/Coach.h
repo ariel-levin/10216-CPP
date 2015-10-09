@@ -9,7 +9,7 @@ using namespace std;
 class Coach: virtual public StaffMember
 {
 public:
-	enum Experties
+	enum Expertise
 	{
 		HEAD,
 		GOALKEEPER,
@@ -18,19 +18,17 @@ public:
 		KICKS
 	};
 
-	Coach(const StaffMember& staffMember, Experties experties);
+	Coach(const StaffMember& staffMember, Expertise experties);
 
-	Experties getExperties() const;
-	void setExperties(Experties experties);
+	Expertise getExperties() const;
+	void setExperties(Expertise experties);
 
-	friend ostream& operator<<(ostream& os, const Coach& coach)
-	{
-		os << "No Implementation" << std::endl;
-		return os;
-	}
+	virtual void toOs(ostream& os) const;
+
+	virtual StaffMember* clone() const;
 
 private:
-	Experties experties;
+	Expertise expertise;
 
 
 };

@@ -22,13 +22,6 @@ public:
 	void setPosition(Position position);
 	virtual void toOs(ostream& os) const;
 
-	//friend ostream& operator<<(ostream& os, const Referee& referee)
-	//{
-	//	os << (Person)referee << endl;
-	//	os << "Position: " << referee.position << endl;
-	//	return os;
-	//}
-
 private:
 	Position position;
 

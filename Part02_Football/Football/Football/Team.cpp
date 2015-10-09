@@ -1,5 +1,6 @@
 #pragma warning( disable : 4996 )
 #include "Team.h"
+#include "Player.h"
 
 Team::Team(const Stadium& stadium, int numberOfStaff, const char* name) : stadium(stadium)
 {
@@ -7,14 +8,12 @@ Team::Team(const Stadium& stadium, int numberOfStaff, const char* name) : stadiu
 	setName(name);
 	this->staff = new StaffMember*[numberOfStaff];
 	this->size = 0;
+	this->playerCounter = 0;
 }
 
 Team::Team(const Team& other) : name(NULL), stadium(other.stadium), staff(NULL)
 {
-	setName(other.name);
-	numberOfStaff = other.numberOfStaff;
-	size = other.size;
-	setStaff(other.staff, other.size, other.numberOfStaff);
+	*this = other;
 }
 
 Team::~Team()
@@ -34,6 +33,7 @@ Team& Team::operator=(const Team& other)
 		setName(other.name);
 		numberOfStaff = other.numberOfStaff;
 		size = other.size;
+		playerCounter = other.playerCounter;
 		setStaff(other.staff, other.size, other.numberOfStaff);
 		this->stadium = other.stadium;
 	}
@@ -59,12 +59,27 @@ const Team& Team::operator-=(const StaffMember& staffMember)
 	return *this;
 }
 
+StaffMember& Team::operator[](int index) const
+{
+	return *staff[index];
+}
+
+StaffMember& Team::operator[](int index)
+{
+	return *staff[index];
+}
+
 void Team::addStaff(const StaffMember& staffmember)
 {
 	if (size < numberOfStaff-1)
 	{ 
-		staff[size] = new StaffMember(staffmember);
+		staff[size] = staffmember.clone();
 		++size;
+
+		if (typeid(staffmember) == typeid(Player))
+		{
+			++playerCounter;
+		}
 	}
 }
 
@@ -87,6 +102,11 @@ void Team::removeStaffMemberByIndex(int index)
 {
 	if (index >= 0 && index < size)
 	{
+		if (typeid(staff[index]) == typeid(Player))
+		{
+			--playerCounter;
+		}
+
 		delete staff[index];
 		for (int i = index; i < size-1; i++)
 		{
@@ -120,6 +140,16 @@ void Team::setName(const char* name)
 	}
 }
 
+int Team::getSize() const
+{
+	return size;
+}
+
+int Team::getPlayerCounter() const
+{
+	return playerCounter;
+}
+
 void Team::setStaff(StaffMember** staff, int size, int numberOfStaff)
 {
 	delete[] this->staff;
@@ -132,7 +162,7 @@ void Team::setStaff(StaffMember** staff, int size, int numberOfStaff)
 		this->staff = new StaffMember*[numberOfStaff];
 		for (int i = 0; i < size; i++)
 		{
-			*(this->staff)[i] = *staff[i];
+			this->staff[i] = staff[i]->clone();
 		}
 	}
 }

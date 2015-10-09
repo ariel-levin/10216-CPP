@@ -30,3 +30,8 @@ void StaffMember::toOs(ostream& os) const
 {
 	os << "Sallary: " << sallary << ", Years Of Experience: " << yearsOfExperience << endl;
 }
+
+StaffMember* StaffMember::clone() const
+{
+	return new StaffMember(*this);
+}

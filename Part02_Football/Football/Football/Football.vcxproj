@@ -48,6 +48,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,8 +82,10 @@
     <ClCompile Include="Association.cpp" />
     <ClCompile Include="Coach.cpp" />
     <ClCompile Include="CoachPlayer.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Referee.cpp" />
     <ClCompile Include="Stadium.cpp" />
     <ClCompile Include="StaffMember.cpp" />
