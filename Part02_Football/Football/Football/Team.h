@@ -33,7 +33,7 @@ public:
 		os << "Team name: " << team.name << ", Number of Staff: " << team.numberOfStaff << endl;
 		os << "Stadium:" << endl << team.stadium << endl;
 		os << "Staff Members:" << endl;
-		for (int i = 0; i < team.numberOfStaff; i++)
+		for (int i = 0; i < team.size; i++)
 		{
 			os << *team.staff[i] << endl;
 		}
@@ -43,10 +43,11 @@ public:
 private:
 	char* name;
 	int numberOfStaff;
+	int size;
 	StaffMember** staff;
 	Stadium stadium;
 
-	void setStaff(StaffMember** staff, int numberOfStaff);
+	void setStaff(StaffMember** staff, int size, int numberOfStaff);
 	int getStaffMemberIndex(const char* name) const;
 	void removeStaffMemberByIndex(int index);
 
