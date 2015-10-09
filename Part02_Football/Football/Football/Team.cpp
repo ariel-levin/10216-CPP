@@ -1,6 +1,8 @@
 #pragma warning( disable : 4996 )
+
 #include "Team.h"
 #include "Player.h"
+
 
 Team::Team(const Stadium& stadium, int numberOfStaff, const char* name) : stadium(stadium)
 {
@@ -42,7 +44,16 @@ Team& Team::operator=(const Team& other)
 
 const Team& Team::operator+=(const StaffMember& staffMember)
 {
-	addStaff(staffMember);
+	if (size < numberOfStaff)
+	{
+		staff[size] = staffMember.clone();
+		++size;
+
+		if (typeid(staffMember) == typeid(Player))
+		{
+			++playerCounter;
+		}
+	}
 	return *this;
 }
 
@@ -71,16 +82,7 @@ StaffMember& Team::operator[](int index)
 
 void Team::addStaff(const StaffMember& staffmember)
 {
-	if (size < numberOfStaff-1)
-	{ 
-		staff[size] = staffmember.clone();
-		++size;
-
-		if (typeid(staffmember) == typeid(Player))
-		{
-			++playerCounter;
-		}
-	}
+	*this += staffmember;
 }
 
 const StaffMember* Team::getStaffMember(const char* name) const

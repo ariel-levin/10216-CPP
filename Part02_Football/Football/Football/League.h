@@ -15,35 +15,52 @@ public:
 	~League();
 	League& operator=(const League& other);
 
-	void start() const; //Start all the games in the league and remove them from the league
+	void start();
 
 	const League& operator+=(const Team& team);//Add team to the league
 	const League& operator-=(const Team& team);//Remove team to the league
 
 	const League& operator+=(const Game& game);//Add game to the league
 
-	void addTeam(const Team& team);//Use operator +=
+	void addTeam(const Team& team);
 	const Team& getTeam(const char* name) const;
 	void removeTeam(const char* name);
+	void removeTeamByIndex(int index);
 
-	const Team* const getAllTeams() const;
-	const Game* const getAllGames() const;
+	Team*const* const getAllTeams() const;		// #note# read before presentation
+	Game*const* const getAllGames() const;
 
 	const char* getName() const;
 	void setName(const char* name);
 
 	friend ostream& operator<<(ostream& os, const League& league)
 	{
-		os << "No Implementation" << std::endl;
+		os << ">>>>>>>> League name: " << league.name << endl;
+		os << endl << ">>>> Number of Teams: " << league.sizeTeams << "/" << league.numberOfTeams << endl;
+		for (int i = 0; i < league.sizeTeams; i++)
+		{
+			os << *league.teams[i] << endl;
+		}
+		os << endl << ">>>> Number of Games : " << league.sizeGames << "/" << league.numberOfGames << endl;
+		for (int i = 0; i < league.sizeGames; i++)
+		{
+			os << *league.games[i] << endl;
+		}
 		return os;
 	}
 
 private:
 	int numberOfTeams;
-	Team* teams;
+	int sizeTeams;
+	Team** teams;
 	int numberOfGames;
-	Game* games;
+	int sizeGames;
+	Game** games;
 	char* name;
+
+	void setTeams(Team** teams, int size, int numberOfTeams);
+	void setGames(Game** games, int size, int numberOfGames);
+	int getTeamIndex(const char* name) const;
 
 };
 

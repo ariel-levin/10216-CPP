@@ -6,6 +6,7 @@
 #include "League.h"
 #include "Association.h"
 
+
 int main()
 {
 	//************************************ Create team 1 *********************************
@@ -84,12 +85,12 @@ int main()
 	Person refereePerson4("Ilan Barom", 24);
 	Referee referee4(refereePerson4, Referee::ASISSTANT);
 
-	////Create the league
-	//League league1("Ligat ha al", 2, 1);//two teams one game
+	//Create the league
+	League league1("Ligat ha al", 2, 1);//two teams one game
 
-	////Add both teams to the league
-	//league1 += team1;
-	//league1 += team2;
+	//Add both teams to the league
+	league1 += team1;
+	league1 += team2;
 
 	////Create the football association
 	//Association association1(1, 4);//one league four referees
@@ -112,13 +113,13 @@ int main()
 	rf[3] = &referee4;
 	Game theGame(stadium1, team1, team2, rf);
 
-	////Add the game to the league
-	//league1 += theGame;
+	//Add the game to the league
+	league1 += theGame;
 
 	////Start the association - start the league - start the game
 	//association1.start();
 
-	////other unused operators
-	//team1 -= player2;//Remove player from team
-	//league1 -= team1;//remove team from league
+	//other unused operators
+	team1 -= player2;//Remove player from team
+	league1 -= team1;//remove team from league
 }

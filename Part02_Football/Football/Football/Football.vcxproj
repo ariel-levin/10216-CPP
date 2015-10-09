@@ -83,6 +83,7 @@
     <ClCompile Include="Coach.cpp" />
     <ClCompile Include="CoachPlayer.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="League.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Player.cpp" />
