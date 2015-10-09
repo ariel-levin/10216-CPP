@@ -92,17 +92,14 @@ int main()
 	league1 += team1;
 	league1 += team2;
 
-	////Create the football association
-	//Association association1(1, 4);//one league four referees
+	//Create the football association
+	Association association1(1, 4);//one league four referees
 
-	////Add the league to the association
-	//association1.addLeague(league1);
-
-	////Add the referees to the association
-	//association1.addReferee(referee1);
-	//association1.addReferee(referee2);
-	//association1.addReferee(referee3);
-	//association1.addReferee(referee4);
+	//Add the referees to the association
+	association1.addReferee(referee1);
+	association1.addReferee(referee2);
+	association1.addReferee(referee3);
+	association1.addReferee(referee4);
 
 
 	//Create a game between the two teams
@@ -116,8 +113,11 @@ int main()
 	//Add the game to the league
 	league1 += theGame;
 
-	////Start the association - start the league - start the game
-	//association1.start();
+	//Add the league to the association
+	association1.addLeague(league1);
+
+	//Start the association - start the league - start the game
+	association1.start();
 
 	//other unused operators
 	team1 -= player2;//Remove player from team

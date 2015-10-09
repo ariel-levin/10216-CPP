@@ -7,13 +7,14 @@ using namespace std;
 #include "League.h"
 #include "Referee.h"
 
+
 class Association
 {
 public:
 	Association(int numberOfLeagues, int numberOfReferees);
 	~Association();
 
-	void start() const;//Start all the leagues games (go to all the leagues and start them)
+	void start() const;
 
 	void addLeague(const League& league);
 	const League& getLeague(const char* name) const;
@@ -25,18 +26,34 @@ public:
 
 	friend ostream& operator<<(ostream& os, const Association& association)
 	{
-		os << "No Implementation" << std::endl;
+		os << ">>>>>>>>>>>>>>>> Association" << endl;
+		os << endl << ">>>>>>>> Number of Leagues: " << association.sizeLeagues << "/" << association.numberOfLeagues << endl;
+		for (int i = 0; i < association.sizeLeagues; i++)
+		{
+			os << *association.leagues[i] << endl;
+		}
+		os << endl << ">>>>>>>> Number of Referees: " << association.sizeReferees << "/" << association.numberOfReferees << endl;
+		for (int i = 0; i < association.sizeReferees; i++)
+		{
+			os << *association.referees[i] << endl;
+		}
 		return os;
 	}
 
 private:
-	League* leagues;
+	League** leagues;
 	int numberOfLeagues;
-	Referee* referees;
+	int sizeLeagues;
+	Referee** referees;
 	int numberOfReferees;
+	int sizeReferees;
 
-	Association(const Association& other);//Cannot duplicate an association
+	Association(const Association& other);	// Cannot duplicate an association
 	Association& operator=(const Association& other);
+
+	int getLeagueIndex(const char* name) const;
+	int getRefereeIndex(const char* name) const;
+
 };
 
 #endif // !_ASSOCIATION_H
