@@ -16,7 +16,7 @@ public:
 
 	int getYearsOfExperience() const;
 	void setYearsOfExperience(int yearsOfExperience);
-	virtual void toOs(ostream os) const;
+	virtual void toOs(ostream& os) const;
 
 	//friend ostream& operator<<(ostream& os, const StaffMember& staffMember)
 	//{

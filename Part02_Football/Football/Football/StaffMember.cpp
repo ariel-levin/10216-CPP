@@ -26,7 +26,7 @@ void StaffMember::setYearsOfExperience(int yearsOfExperience)
 	this->yearsOfExperience = yearsOfExperience;
 }
 
-void StaffMember::toOs(ostream os) const
+void StaffMember::toOs(ostream& os) const
 {
 	os << "Sallary: " << sallary << ", Years Of Experience: " << yearsOfExperience << endl;
 }

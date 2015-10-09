@@ -20,7 +20,7 @@ public:
 	
 	Position getPosition() const;
 	void setPosition(Position position);
-	virtual void toOs(ostream os) const;
+	virtual void toOs(ostream& os) const;
 
 	//friend ostream& operator<<(ostream& os, const Referee& referee)
 	//{

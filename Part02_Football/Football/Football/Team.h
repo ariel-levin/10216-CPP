@@ -28,9 +28,15 @@ public:
 	const char* getName() const;
 	void setName(const char* name);
 
-	friend ostream& operator<<(ostream& os, const Team& league)
+	friend ostream& operator<<(ostream& os, const Team& team)
 	{
-		os << "No Implementation" << std::endl;
+		os << "Team name: " << team.name << ", Number of Staff: " << team.numberOfStaff << endl;
+		os << "Stadium:" << endl << team.stadium << endl;
+		os << "Staff Members:" << endl;
+		for (int i = 0; i < team.numberOfStaff; i++)
+		{
+			os << *team.staff[i] << endl;
+		}
 		return os;
 	}
 
@@ -40,8 +46,9 @@ private:
 	StaffMember** staff;
 	Stadium stadium;
 
-	void setStaff(StaffMember*const* staff, int numberOfStaff);
+	void setStaff(StaffMember** staff, int numberOfStaff);
 	int getStaffMemberIndex(const char* name) const;
+	void removeStaffMemberByIndex(int index);
 
 };
 

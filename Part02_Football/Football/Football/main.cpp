@@ -14,9 +14,28 @@ int main()
 	StaffMember staff1(person1, 20000, 3);
 	//Player player1(staff1, Player::STRICKER, 8);
 
-	//Person person2("Yoav Ziv", 26);
-	//StaffMember staff2(person2, 10000, 1);
+	Person person2("Yoav Ziv", 26);
+	StaffMember staff2(person2, 10000, 1);
 	//Player player2(staff2, Player::GOALKEEPER, 12);
+
+	cout << person1 << endl;
+	cout << "------" << endl;
+	cout << staff1 << endl;
+	cout << "------" << endl;
+	cout << "1==2 ? : " << (staff1 == staff2) << endl;
+	cout << "------" << endl;
+	cout << "1==1 ? : " << (staff1 == staff1) << endl;
+
+	Stadium stadium1("Blumfild", 40000, "Tel Aviv");
+
+	//Crete team 1
+	Team team1(stadium1, 13, "Maccabi");
+
+	//Add the players and the coaches to the team
+	team1 += staff1;
+	team1 += staff2;
+
+	cout << team1 << endl;
 
 	////Create coaches for team 1
 	//Person person3("Slavisa Jokanovic", 58);

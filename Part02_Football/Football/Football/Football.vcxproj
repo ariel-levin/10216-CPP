@@ -83,6 +83,10 @@
     <ClCompile Include="CoachPlayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Referee.cpp" />
+    <ClCompile Include="Stadium.cpp" />
+    <ClCompile Include="StaffMember.cpp" />
+    <ClCompile Include="Team.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

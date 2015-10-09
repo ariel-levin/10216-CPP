@@ -15,7 +15,7 @@ void Referee::setPosition(Position position)
 	this->position = position;
 }
 
-void Referee::toOs(ostream os) const
+void Referee::toOs(ostream& os) const
 {
 	os << "Position: " << position << endl;
 }

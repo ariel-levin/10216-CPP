@@ -26,7 +26,7 @@ Stadium& Stadium::operator=(const Stadium& other)
 	{
 		setName(other.name);
 		numberOfSeats = other.numberOfSeats;
-		setLocation(location);
+		setLocation(other.location);
 	}
 	return *this;
 }
