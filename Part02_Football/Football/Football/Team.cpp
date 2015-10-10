@@ -154,6 +154,10 @@ int Team::getPlayerCounter() const
 
 void Team::setStaff(StaffMember** staff, int size, int numberOfStaff)
 {
+	for (int i = 0; i < size; i++)
+	{
+		delete staff[i];
+	}
 	delete[] this->staff;
 	if (size == 0)
 	{
