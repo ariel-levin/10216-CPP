@@ -5,111 +5,99 @@ Association::Association(int numberOfLeagues, int numberOfReferees)
 {
 	this->numberOfLeagues = numberOfLeagues;
 	this->numberOfReferees = numberOfReferees;
-	this->sizeLeagues = 0;
-	this->sizeReferees = 0;
-	this->leagues = new League*[numberOfLeagues];
-	this->referees = new Referee*[numberOfReferees];
-}
-
-Association::~Association()
-{
-	for (int i = 0; i < sizeLeagues; i++)
-	{
-		delete leagues[i];
-	}
-	delete[] leagues;
-	for (int i = 0; i < sizeReferees; i++)
-	{
-		delete referees[i];
-	}
-	delete[] referees;
 }
 
 //Start all the leagues games (go to all the leagues and start them)
-void Association::start() const
+void Association::start()
 {
-	for (int i = 0; i < sizeLeagues; i++)
+	for (int i = 0; i < getSizeLeagues(); i++)
 	{
-		leagues[i]->start();
+		leagues[i].start();
 	}
 }
 
 void Association::addLeague(const League& league)
 {
-	if (sizeLeagues < numberOfLeagues)
+	if (getSizeLeagues() < numberOfLeagues)
 	{
-		leagues[sizeLeagues] = new League(league);
-		++sizeLeagues;
+		leagues.push_back(league);
 	}
 }
 
 const League& Association::getLeague(const char* name) const
 {
-	return *leagues[getLeagueIndex(name)];
+	return *getLeagueItr(name);
 }
 
 void Association::removeLeague(const char* name)
 {
-	int index = getLeagueIndex(name);
-	if (index >= 0 && index < sizeLeagues)
+	vector<League>::const_iterator itr = getLeagueItr(name);
+
+	if (itr != leagues.end())
 	{
-		delete leagues[index];
-		for (int i = index; i < sizeLeagues - 1; i++)
-		{
-			leagues[i] = leagues[i + 1];
-		}
-		--sizeLeagues;
+		leagues.erase(itr);
 	}
 }
 
 void Association::addReferee(const Referee& referee)
 {
-	if (sizeReferees < numberOfReferees)
+	if (getSizeReferees() < numberOfReferees)
 	{
-		referees[sizeReferees] = new Referee(referee);
-		++sizeReferees;
+		referees.push_back(referee);
 	}
 }
 
 const Referee& Association::getReferee(const char* name) const
 {
-	return *referees[getRefereeIndex(name)];
+	return *getRefereeItr(name);
 }
 
 void Association::removeReferee(const char* name)
 {
-	int index = getRefereeIndex(name);
-	if (index >= 0 && index < sizeReferees)
+	vector<Referee>::const_iterator itr = getRefereeItr(name);
+
+	if (itr != referees.end())
 	{
-		delete referees[index];
-		for (int i = index; i < sizeReferees - 1; i++)
-		{
-			referees[i] = referees[i + 1];
-		}
-		--sizeReferees;
+		referees.erase(itr);
 	}
 }
 
-int Association::getLeagueIndex(const char* name) const
+int Association::getSizeLeagues() const
 {
-	for (int i = 0; i < sizeLeagues; i++)
-	{
-		if ((*leagues[i]).getName().compare(name) == 0)
-		{
-			return i;
-		}
-	}
-	return -1;
+	return (int)leagues.size();
 }
 
-int Association::getRefereeIndex(const char* name) const
+int Association::getSizeReferees() const
 {
-	for (int i = 0; i < sizeReferees; i++)
+	return (int)referees.size();
+}
+
+vector<League>::const_iterator Association::getLeagueItr(const char* name) const
+{
+	vector<League>::const_iterator  itr = leagues.begin();
+	vector<League>::const_iterator  itrEnd = leagues.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if ((*referees[i]).getName().compare(name) == 0)
+		if ((*itr).getName().compare(name) == 0)
 		{
-			return i;
+			return itr;
 		}
 	}
-	return -1;
+	return itrEnd;
+}
+
+vector<Referee>::const_iterator Association::getRefereeItr(const char* name) const
+{
+	vector<Referee>::const_iterator  itr = referees.begin();
+	vector<Referee>::const_iterator  itrEnd = referees.end();
+
+	for (; itr != itrEnd; ++itr)
+	{
+		if ((*itr).getName().compare(name) == 0)
+		{
+			return itr;
+		}
+	}
+	return itrEnd;
 }

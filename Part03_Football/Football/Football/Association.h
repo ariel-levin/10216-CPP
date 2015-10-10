@@ -2,6 +2,7 @@
 #define _ASSOCIATION_H
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #include "League.h"
@@ -12,9 +13,8 @@ class Association
 {
 public:
 	Association(int numberOfLeagues, int numberOfReferees);
-	~Association();
 
-	void start() const;
+	void start();
 
 	void addLeague(const League& league);
 	const League& getLeague(const char* name) const;
@@ -24,35 +24,36 @@ public:
 	const Referee& getReferee(const char* name) const;
 	void removeReferee(const char* name);
 
+	int getSizeLeagues() const;
+	int getSizeReferees() const;
+
 	friend ostream& operator<<(ostream& os, const Association& association)
 	{
 		os << ">>>>>>>>>>>>>>>> Association" << endl;
-		os << endl << ">>>>>>>> Number of Leagues: " << association.sizeLeagues << "/" << association.numberOfLeagues << endl;
-		for (int i = 0; i < association.sizeLeagues; i++)
+		os << endl << ">>>>>>>> Number of Leagues: " << association.getSizeLeagues() << "/" << association.numberOfLeagues << endl;
+		for (int i = 0; i < association.getSizeLeagues(); i++)
 		{
-			os << *association.leagues[i] << endl;
+			os << association.leagues[i] << endl;
 		}
-		os << endl << ">>>>>>>> Number of Referees: " << association.sizeReferees << "/" << association.numberOfReferees << endl;
-		for (int i = 0; i < association.sizeReferees; i++)
+		os << endl << ">>>>>>>> Number of Referees: " << association.getSizeReferees() << "/" << association.numberOfReferees << endl;
+		for (int i = 0; i < association.getSizeReferees(); i++)
 		{
-			os << *association.referees[i] << endl;
+			os << association.referees[i] << endl;
 		}
 		return os;
 	}
 
 private:
-	League** leagues;
+	vector<League> leagues;
 	int numberOfLeagues;
-	int sizeLeagues;
-	Referee** referees;
+	vector<Referee> referees;
 	int numberOfReferees;
-	int sizeReferees;
 
 	Association(const Association& other);	// Cannot duplicate an association
 	Association& operator=(const Association& other);
 
-	int getLeagueIndex(const char* name) const;
-	int getRefereeIndex(const char* name) const;
+	vector<League>::const_iterator getLeagueItr(const char* name) const;
+	vector<Referee>::const_iterator getRefereeItr(const char* name) const;
 
 };
 
