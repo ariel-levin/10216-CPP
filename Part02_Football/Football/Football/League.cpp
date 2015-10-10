@@ -3,7 +3,7 @@
 #include "League.h"
 
 
-League::League(char* name, int numberOfTeams, int numberOfGames) : name(NULL)
+League::League(const char* name, int numberOfTeams, int numberOfGames) : name(NULL)
 {
 	setName(name);
 	this->numberOfTeams = numberOfTeams;

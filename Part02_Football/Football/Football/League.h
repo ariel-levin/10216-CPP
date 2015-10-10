@@ -10,7 +10,7 @@ using namespace std;
 class League
 {
 public:
-	League(char* name, int numberOfTeams, int numberOfGames);
+	League(const char* name, int numberOfTeams, int numberOfGames);
 	League(const League& other);
 	~League();
 	League& operator=(const League& other);
