@@ -53,8 +53,6 @@ private:
 
 };
 
-#endif // LINKED_LIST_H
-
 
 template<class T>
 LinkedList<T>::LinkedList() : head(NULL), tail(NULL)
@@ -169,3 +167,6 @@ void LinkedList<T>::deleteList()
 	head = NULL;
 	tail = NULL;
 }
+
+
+#endif // LINKED_LIST_H

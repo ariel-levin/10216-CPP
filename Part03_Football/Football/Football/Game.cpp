@@ -5,7 +5,7 @@
 #include "Player.h"
 
 
-Game::Game(const Stadium& stadium, Team& team1, const Team& team2, Referee *referees[NUM_OF_REFEREES]) :
+Game::Game(const Stadium& stadium, Team& team1, const Team& team2, const LinkedList<Referee>& referees) :
 	stadium(stadium), team1(team1), team2(team2)
 {
 	this->referees = referees;

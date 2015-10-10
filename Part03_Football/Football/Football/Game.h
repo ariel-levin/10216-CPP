@@ -7,13 +7,12 @@ using namespace std;
 #include "Stadium.h"
 #include "Team.h"
 #include "Referee.h"
+#include "LinkedList.h"
 
 class Game
 {
-	static const int NUM_OF_REFEREES = 4;
-
 public:
-	Game(const Stadium& stadium, Team& team1 , const Team& team2 , Referee *referees[NUM_OF_REFEREES]);
+	Game(const Stadium& stadium, Team& team1, const Team& team2, const LinkedList<Referee>& referees);
 
 	void start() const;
 
@@ -23,11 +22,8 @@ public:
 		os << game.stadium << endl;
 		os << "Team 1:" << endl << game.team1 << endl;
 		os << "Team 2:" << endl << game.team2 << endl;
-		for (int i = 0; i < Game::NUM_OF_REFEREES; i++)
-		{
-			os << "Referee " << (i+1) << ":" << endl;
-			os << *game.referees[i] << endl;
-		}
+		os << "Referees:" << endl;
+		os << game.referees << endl;
 		return os;
 	}
 
@@ -35,7 +31,7 @@ private:
 	Stadium stadium;
 	Team team1;
 	Team team2;
-	Referee **referees;
+	LinkedList<Referee> referees;
 
 };
 

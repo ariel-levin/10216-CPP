@@ -104,11 +104,11 @@ int main()
 
 
 	//Create a game between the two teams
-	Referee** rf = new Referee*[4];
-	rf[0] = &referee1;
-	rf[1] = &referee2;
-	rf[2] = &referee3;
-	rf[3] = &referee4;
+	LinkedList<Referee> rf;
+	rf.add(referee1);
+	rf.add(referee2);
+	rf.add(referee3);
+	rf.add(referee4);
 	Game theGame(stadium1, team1, team2, rf);
 
 	//Add the game to the league
