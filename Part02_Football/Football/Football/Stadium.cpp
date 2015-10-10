@@ -2,7 +2,7 @@
 
 #include "Stadium.h"
 
-Stadium::Stadium(const char* name, int numberOfSeats, char* location) : name(NULL), location(NULL)
+Stadium::Stadium(const char* name, int numberOfSeats, const char* location) : name(NULL), location(NULL)
 {
 	setName(name);
 	this->numberOfSeats = numberOfSeats;

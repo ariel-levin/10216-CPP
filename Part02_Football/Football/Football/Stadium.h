@@ -8,7 +8,7 @@ using namespace std;
 class Stadium
 {
 public:
-	Stadium(const char* name, int numberOfSeats, char* location);
+	Stadium(const char* name, int numberOfSeats, const char* location);
 	Stadium(const Stadium& other);
 	~Stadium();
 	Stadium& operator=(const Stadium& other);
