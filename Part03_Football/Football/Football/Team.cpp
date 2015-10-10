@@ -2,29 +2,34 @@
 
 #include "Team.h"
 #include "Player.h"
+#include "StaffMember.h"
 
 
 Team::Team(const Stadium& stadium, int numberOfStaff, const string& name) : stadium(stadium)
 {
 	this->numberOfStaff = numberOfStaff;
 	setName(name);
-	this->staff = new StaffMember*[numberOfStaff];
-	this->size = 0;
 	this->playerCounter = 0;
 }
 
-Team::Team(const Team& other) : stadium(other.stadium), staff(NULL)
+Team::Team(const Team& other) : stadium(other.stadium)
 {
 	*this = other;
 }
 
 Team::~Team()
 {
-	for (int i = 0; i < size; i++)
+	vector<StaffMember*>::iterator  itr = staff.begin();
+	vector<StaffMember*>::iterator  itrEnd = staff.end();
+
+	StaffMember* temp;
+	for ( ; itr != itrEnd; ++itr)
 	{
-		delete staff[i];
+		temp = *itr;
+		delete temp;
 	}
-	delete[] staff;
+
+	staff.clear();
 }
 
 Team& Team::operator=(const Team& other)
@@ -33,9 +38,8 @@ Team& Team::operator=(const Team& other)
 	{
 		setName(other.name);
 		numberOfStaff = other.numberOfStaff;
-		size = other.size;
 		playerCounter = other.playerCounter;
-		setStaff(other.staff, other.size, other.numberOfStaff);
+		setStaff(other.staff, other.numberOfStaff);
 		this->stadium = other.stadium;
 	}
 	return *this;
@@ -43,10 +47,9 @@ Team& Team::operator=(const Team& other)
 
 const Team& Team::operator+=(const StaffMember& staffMember)
 {
-	if (size < numberOfStaff)
+	if (getSize() < numberOfStaff)
 	{
-		staff[size] = staffMember.clone();
-		++size;
+		staff.push_back(staffMember.clone());
 
 		if (typeid(staffMember) == typeid(Player))
 		{
@@ -58,11 +61,14 @@ const Team& Team::operator+=(const StaffMember& staffMember)
 
 const Team& Team::operator-=(const StaffMember& staffMember)
 {
-	for (int i = 0; i < numberOfStaff; i++)
+	vector<StaffMember*>::iterator  itr = this->staff.begin();
+	vector<StaffMember*>::iterator  itrEnd = this->staff.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if ((*staff[i]).getId() == staffMember.getId())
+		if ((*itr)->getId() == staffMember.getId())
 		{
-			removeStaffMemberByIndex(i);
+			removeStaffMemberByItr(itr);
 			break;
 		}
 	}
@@ -86,34 +92,26 @@ void Team::addStaff(const StaffMember& staffmember)
 
 const StaffMember* Team::getStaffMember(const string& name) const
 {
-	int i = getStaffMemberIndex(name);
-	if (i != -1)
-		return staff[i];
+	vector<StaffMember*>::const_iterator itr = getStaffMemberItr(name);
+	if (itr != staff.end())
+		return *itr;
 	else
 		return NULL;
 }
 
 void Team::removeStaffMember(const string& name)
 {
-	int index = getStaffMemberIndex(name);
-	removeStaffMemberByIndex(index);
+	vector<StaffMember*>::const_iterator itr = getStaffMemberItr(name);
+	removeStaffMemberByItr(itr);
 }
 
-void Team::removeStaffMemberByIndex(int index)
+void Team::removeStaffMemberByItr(const vector<StaffMember*>::const_iterator& itr)
 {
-	if (index >= 0 && index < size)
+	if (itr != staff.end())
 	{
-		if (typeid(staff[index]) == typeid(Player))
-		{
-			--playerCounter;
-		}
-
-		delete staff[index];
-		for (int i = index; i < size-1; i++)
-		{
-			staff[i] = staff[i+1];
-		}
-		--size;
+		StaffMember* tmp = *itr;
+		delete tmp;
+		staff.erase(itr);
 	}
 }
 
@@ -137,41 +135,48 @@ void Team::setName(const string& name)
 	this->name = name;
 }
 
-int Team::getSize() const
-{
-	return size;
-}
-
 int Team::getPlayerCounter() const
 {
 	return playerCounter;
 }
 
-void Team::setStaff(StaffMember** staff, int size, int numberOfStaff)
+int Team::getSize() const
 {
-	delete[] this->staff;
-	if (size == 0)
+	return (int)staff.size();
+}
+
+void Team::setStaff(vector<StaffMember*> staff, int numberOfStaff)
+{
+	// delete
+	vector<StaffMember*>::iterator  itr = this->staff.begin();
+	vector<StaffMember*>::iterator  itrEnd = this->staff.end();
+
+	StaffMember* temp;
+	for (; itr != itrEnd; ++itr)
 	{
-		this->staff = NULL;
+		temp = *itr;
+		delete temp;
 	}
-	else
-	{ 
-		this->staff = new StaffMember*[numberOfStaff];
-		for (int i = 0; i < size; i++)
-		{
-			this->staff[i] = staff[i]->clone();
-		}
+	this->staff.clear();
+
+	// clone
+	for (int i = 0; i < (int)staff.size(); i++)
+	{
+		this->staff.push_back(staff[i]->clone());
 	}
 }
 
-int Team::getStaffMemberIndex(const string& name) const
+vector<StaffMember*>::const_iterator Team::getStaffMemberItr(const string& name) const
 {
-	for (int i = 0; i < size; i++)
+	vector<StaffMember*>::const_iterator  itr = staff.begin();
+	vector<StaffMember*>::const_iterator  itrEnd = staff.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if ((*staff[i]).getName().compare(name) == 0)
+		if ((*itr)->getName().compare(name) == 0)
 		{
-			return i;
+			return itr;
 		}
 	}
-	return -1;
+	return itrEnd;
 }

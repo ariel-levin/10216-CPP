@@ -2,6 +2,7 @@
 #define _TEAM_H
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #include "StaffMember.h"
@@ -30,15 +31,15 @@ public:
 	const string& getName() const;
 	void setName(const string& name);
 
-	int getSize() const;
 	int getPlayerCounter() const;
+	int getSize() const;
 
 	friend ostream& operator<<(ostream& os, const Team& team)
 	{
-		os << "Team name: " << team.name << ", Staff size: " << team.size << "/" << team.numberOfStaff << endl;
+		os << "Team name: " << team.name << ", Staff size: " << team.getSize() << "/" << team.numberOfStaff << endl;
 		os << "Stadium:" << endl << team.stadium << endl;
 		os << "Staff Members:" << endl;
-		for (int i = 0; i < team.size; i++)
+		for (int i = 0; i < team.getSize(); i++)
 		{
 			os << *team.staff[i] << endl;
 		}
@@ -48,14 +49,13 @@ public:
 private:
 	string name;
 	int numberOfStaff;
-	int size;
 	int playerCounter;
-	StaffMember** staff;
+	vector<StaffMember*> staff;
 	Stadium stadium;
 
-	void setStaff(StaffMember** staff, int size, int numberOfStaff);
-	int getStaffMemberIndex(const string& name) const;
-	void removeStaffMemberByIndex(int index);
+	void setStaff(vector<StaffMember*> staff, int numberOfStaff);
+	vector<StaffMember*>::const_iterator getStaffMemberItr(const string& name) const;
+	void removeStaffMemberByItr(const vector<StaffMember*>::const_iterator& itr);
 
 };
 

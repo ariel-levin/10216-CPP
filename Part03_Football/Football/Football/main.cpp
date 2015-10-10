@@ -120,7 +120,7 @@ int main()
 
 	//Start the association - start the league - start the game
 	association1.start();
-
+	
 	//other unused operators
 	team1 -= player2;//Remove player from team
 	league1 -= team1;//remove team from league
