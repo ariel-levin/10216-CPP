@@ -12,11 +12,11 @@ Game::Game(const Stadium& stadium, Team& team1, const Team& team2, const LinkedL
 }
 
 //Show the result of the game (randomly show a score and print the names of the players who scored..)
-void Game::start() const
+void Game::start() const throw (string)
 {
 	if (team1.getPlayerCounter() <= 0 || team2.getPlayerCounter() <= 0)
 	{
-		cout << endl << "can't start game because one or both of the teams doesn't have any players.." << endl;
+		throw "can't start game because one or both of the teams doesn't have any players..";
 	}
 	else
 	{ 

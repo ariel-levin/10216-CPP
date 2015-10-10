@@ -13,11 +13,17 @@ League::League(const string& name, int numberOfTeams, int numberOfGames)
 //Start all the games in the league and remove them from the league
 void League::start()
 {
-	for (int i = 0; i < (int)games.size(); i++)
-	{
-		games[i].start();
+	try {
+		for (int i = 0; i < (int)games.size(); i++)
+		{
+			games[i].start();
+		}
+		games.clear();
 	}
-	games.clear();
+	catch (const string msg)
+	{
+		cout << msg << endl;
+	}
 }
 
 const League& League::operator+=(const Team& team)
@@ -59,9 +65,17 @@ void League::addTeam(const Team& team)
 	*this += team;
 }
 
-const Team& League::getTeam(const string& name) const
+const Team& League::getTeam(const string& name) const throw (string)
 {
-	return *getTeamItr(name);
+	vector<Team>::const_iterator itr = getTeamItr(name);
+	if (itr != teams.end())
+	{
+		return *itr;
+	}
+	else 
+	{
+		throw "Team not found";
+	}
 }
 
 void League::removeTeam(const string& name)

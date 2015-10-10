@@ -8,7 +8,6 @@ CoachPlayer::CoachPlayer(const Player & player, const Coach & coach) : Player(pl
 
 StaffMember* CoachPlayer::clone() const
 {
-	//return nullptr;
 	return new CoachPlayer(*this);
 }
 

@@ -24,9 +24,17 @@ void Association::addLeague(const League& league)
 	}
 }
 
-const League& Association::getLeague(const char* name) const
+const League& Association::getLeague(const char* name) const throw (string)
 {
-	return *getLeagueItr(name);
+	vector<League>::const_iterator itr = getLeagueItr(name);
+	if (itr != leagues.end())
+	{
+		return *itr;
+	}
+	else
+	{
+		throw "League not found";
+	}
 }
 
 void Association::removeLeague(const char* name)
@@ -47,9 +55,17 @@ void Association::addReferee(const Referee& referee)
 	}
 }
 
-const Referee& Association::getReferee(const char* name) const
+const Referee& Association::getReferee(const char* name) const throw(string)
 {
-	return *getRefereeItr(name);
+	vector<Referee>::const_iterator itr = getRefereeItr(name);
+	if (itr != referees.end())
+	{
+		return *itr;
+	}
+	else
+	{
+		throw "Referee Not Found";
+	}
 }
 
 void Association::removeReferee(const char* name)

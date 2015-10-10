@@ -75,13 +75,23 @@ const Team& Team::operator-=(const StaffMember& staffMember)
 	return *this;
 }
 
-StaffMember& Team::operator[](int index) const
+StaffMember& Team::operator[](int index) const throw (string)
 {
+	if (index < 0 || index >= (int)staff.size())
+	{
+		throw "Illegal boundary exception";
+	}
+
 	return *staff[index];
 }
 
-StaffMember& Team::operator[](int index)
+StaffMember& Team::operator[](int index) throw (string)
 {
+	if (index < 0 || index >= (int)staff.size())
+	{
+		throw "Illegal boundary exception";
+	}
+
 	return *staff[index];
 }
 

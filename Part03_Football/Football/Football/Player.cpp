@@ -21,11 +21,15 @@ int Player::getNumber() const
 	return number;
 }
 
-void Player::setNumber(int number)
+void Player::setNumber(int number) throw (const string)
 {
 	if (number > 0)
 	{
 		this->number = number;
+	}
+	else
+	{
+		throw "Invalid number, need to be greater then zero";
 	}
 }
 
