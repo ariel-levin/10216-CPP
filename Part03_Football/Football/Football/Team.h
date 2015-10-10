@@ -10,7 +10,7 @@ using namespace std;
 class Team
 {
 public:
-	Team(const Stadium& stadium, int numberOfStaff, const char* name);
+	Team(const Stadium& stadium, int numberOfStaff, const string& name);
 	Team(const Team& other);
 	~Team();
 	Team& operator=(const Team& other);
@@ -21,14 +21,14 @@ public:
 	StaffMember& operator[](int index);
 
 	void addStaff(const StaffMember& staffmember);
-	const StaffMember* getStaffMember(const char* name) const;
-	void removeStaffMember(const char* name);
+	const StaffMember* getStaffMember(const string& name) const;
+	void removeStaffMember(const string& name);
 
 	const Stadium getStadium() const;
 	void setStadium(const Stadium& stadium);
 
-	const char* getName() const;
-	void setName(const char* name);
+	const string& getName() const;
+	void setName(const string& name);
 
 	int getSize() const;
 	int getPlayerCounter() const;
@@ -46,7 +46,7 @@ public:
 	}
 
 private:
-	char* name;
+	string name;
 	int numberOfStaff;
 	int size;
 	int playerCounter;
@@ -54,7 +54,7 @@ private:
 	Stadium stadium;
 
 	void setStaff(StaffMember** staff, int size, int numberOfStaff);
-	int getStaffMemberIndex(const char* name) const;
+	int getStaffMemberIndex(const string& name) const;
 	void removeStaffMemberByIndex(int index);
 
 };

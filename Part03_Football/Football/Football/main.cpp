@@ -1,3 +1,4 @@
+#include <string>
 #include "Player.h"
 #include "Coach.h"
 #include "Referee.h"

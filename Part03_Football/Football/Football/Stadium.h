@@ -1,6 +1,7 @@
 #ifndef _STADIUM_H
 #define _STADIUM_H
 
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -8,19 +9,16 @@ using namespace std;
 class Stadium
 {
 public:
-	Stadium(const char* name, int numberOfSeats, char* location);
-	Stadium(const Stadium& other);
-	~Stadium();
-	Stadium& operator=(const Stadium& other);
+	Stadium(const string& name, int numberOfSeats, const string& location);
 
-	const char* getName() const;
-	void setName(const char* name);
+	const string& getName() const;
+	void setName(const string& name);
 
 	int getNumberOfSeats() const;
 	void setNumberOfSeats(int numberOfSeats);
 
-	const char* getLocation();
-	void setLocation(const char* location);
+	const string& getLocation();
+	void setLocation(const string& location);
 
 	friend ostream& operator<<(ostream& os, const Stadium& league)
 	{
@@ -29,9 +27,9 @@ public:
 	}
 
 private:
-	char* name;
+	string name;
 	int numberOfSeats;
-	char* location;
+	string location;
 
 };
 

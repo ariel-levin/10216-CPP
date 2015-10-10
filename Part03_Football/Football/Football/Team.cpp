@@ -4,7 +4,7 @@
 #include "Player.h"
 
 
-Team::Team(const Stadium& stadium, int numberOfStaff, const char* name) : stadium(stadium)
+Team::Team(const Stadium& stadium, int numberOfStaff, const string& name) : stadium(stadium)
 {
 	this->numberOfStaff = numberOfStaff;
 	setName(name);
@@ -13,14 +13,13 @@ Team::Team(const Stadium& stadium, int numberOfStaff, const char* name) : stadiu
 	this->playerCounter = 0;
 }
 
-Team::Team(const Team& other) : name(NULL), stadium(other.stadium), staff(NULL)
+Team::Team(const Team& other) : stadium(other.stadium), staff(NULL)
 {
 	*this = other;
 }
 
 Team::~Team()
 {
-	delete[] name;
 	for (int i = 0; i < size; i++)
 	{
 		delete staff[i];
@@ -85,7 +84,7 @@ void Team::addStaff(const StaffMember& staffmember)
 	*this += staffmember;
 }
 
-const StaffMember* Team::getStaffMember(const char* name) const
+const StaffMember* Team::getStaffMember(const string& name) const
 {
 	int i = getStaffMemberIndex(name);
 	if (i != -1)
@@ -94,7 +93,7 @@ const StaffMember* Team::getStaffMember(const char* name) const
 		return NULL;
 }
 
-void Team::removeStaffMember(const char* name)
+void Team::removeStaffMember(const string& name)
 {
 	int index = getStaffMemberIndex(name);
 	removeStaffMemberByIndex(index);
@@ -128,18 +127,14 @@ void Team::setStadium(const Stadium& stadium)
 	this->stadium = stadium;
 }
 
-const char* Team::getName() const
+const string& Team::getName() const
 {
 	return name;
 }
 
-void Team::setName(const char* name)
+void Team::setName(const string& name)
 {
-	if (this->name != name)
-	{
-		delete[] this->name;
-		this->name = strdup(name);
-	}
+	this->name = name;
 }
 
 int Team::getSize() const
@@ -169,11 +164,11 @@ void Team::setStaff(StaffMember** staff, int size, int numberOfStaff)
 	}
 }
 
-int Team::getStaffMemberIndex(const char* name) const
+int Team::getStaffMemberIndex(const string& name) const
 {
 	for (int i = 0; i < size; i++)
 	{
-		if (strcmp((*staff[i]).getName(), name) == 0)
+		if ((*staff[i]).getName().compare(name) == 0)
 		{
 			return i;
 		}

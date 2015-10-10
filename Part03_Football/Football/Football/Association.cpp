@@ -94,7 +94,7 @@ int Association::getLeagueIndex(const char* name) const
 {
 	for (int i = 0; i < sizeLeagues; i++)
 	{
-		if (strcmp((*leagues[i]).getName(), name) == 0)
+		if ((*leagues[i]).getName().compare(name) == 0)
 		{
 			return i;
 		}
@@ -106,7 +106,7 @@ int Association::getRefereeIndex(const char* name) const
 {
 	for (int i = 0; i < sizeReferees; i++)
 	{
-		if (strcmp((*referees[i]).getName(), name) == 0)
+		if ((*referees[i]).getName().compare(name) == 0)
 		{
 			return i;
 		}

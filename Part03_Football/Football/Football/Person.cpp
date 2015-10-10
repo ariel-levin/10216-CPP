@@ -5,32 +5,11 @@
 int Person::counter = 0;
 
 
-Person::Person(const char* name, int age) : name(NULL)
+Person::Person(const string& name, int age)
 {
 	setName(name);
 	this->age = age;
 	this->id = ++counter;
-}
-
-Person::Person(const Person& other) : name(NULL)
-{
-	*this = other;
-}
-
-Person::~Person()
-{
-	delete[] name;
-}
-
-Person& Person::operator=(const Person& other)
-{
-	if (this != &other)
-	{
-		age = other.age;
-		setName(other.name);
-		id = other.id;
-	}
-	return *this;
 }
 
 bool Person::operator==(const Person& other) const
@@ -38,18 +17,14 @@ bool Person::operator==(const Person& other) const
 	return this->id == other.id;
 }
 
-const char* Person::getName() const
+const string& Person::getName() const
 {
 	return this->name;
 }
 
-void Person::setName(const char* name)
+void Person::setName(const string& name)
 {
-	if (this->name != name)
-	{
-		delete[] this->name;
-		this->name = strdup(name);
-	}
+	this->name = name;
 }
 
 int Person::getAge() const

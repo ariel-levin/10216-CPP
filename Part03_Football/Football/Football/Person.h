@@ -1,21 +1,21 @@
 #ifndef _PERSON_H
 #define _PERSON_H
 
+#include <string>
 #include <iostream>
 using namespace std;
+
 
 class Person
 {
 public:
-	Person(const char* name, int age);
-	Person(const Person& other);
-	virtual ~Person();
-	virtual Person& operator=(const Person& other);
+	Person(const string& name, int age);
+	virtual ~Person() {}
 
 	bool operator==(const Person& other) const;
 
-	const char* getName() const;
-	void setName(const char* name);
+	const string& getName() const;
+	void setName(const string& name);
 
 	int getAge() const;
 	void setAge(int age);
@@ -31,7 +31,7 @@ public:
 	}
 
 private:
-	char* name;
+	string name;
 	int age;
 	int id;
 

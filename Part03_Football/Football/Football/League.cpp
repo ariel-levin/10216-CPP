@@ -3,7 +3,7 @@
 #include "League.h"
 
 
-League::League(char* name, int numberOfTeams, int numberOfGames) : name(NULL)
+League::League(const string& name, int numberOfTeams, int numberOfGames)
 {
 	setName(name);
 	this->numberOfTeams = numberOfTeams;
@@ -14,14 +14,13 @@ League::League(char* name, int numberOfTeams, int numberOfGames) : name(NULL)
 	this->games = new Game*[numberOfGames];
 }
 
-League::League(const League& other) : name(NULL), teams(NULL), games(NULL)
+League::League(const League& other) : teams(NULL), games(NULL)
 {
 	*this = other;
 }
 
 League::~League()
 {
-	delete[] name;
 	for (int i = 0; i < sizeTeams; i++)
 	{
 		delete teams[i];
@@ -77,7 +76,7 @@ const League& League::operator-=(const Team& team)
 {
 	for (int i = 0; i < numberOfTeams; i++)
 	{
-		if (strcmp((*teams[i]).getName(), team.getName()) == 0)
+		if ((*teams[i]).getName().compare(team.getName()) == 0)
 		{
 			removeTeamByIndex(i);
 			break;
@@ -101,12 +100,12 @@ void League::addTeam(const Team& team)
 	*this += team;
 }
 
-const Team& League::getTeam(const char* name) const
+const Team& League::getTeam(const string& name) const
 {
 	return *teams[getTeamIndex(name)];
 }
 
-void League::removeTeam(const char* name)
+void League::removeTeam(const string& name)
 {
 	int index = getTeamIndex(name);
 	removeTeamByIndex(index);
@@ -135,18 +134,14 @@ Game*const* const League::getAllGames() const
 	return games;
 }
 
-const char* League::getName() const
+const string& League::getName() const
 {
 	return name;
 }
 
-void League::setName(const char* name)
+void League::setName(const string& name)
 {
-	if (this->name != name)
-	{
-		delete[] this->name;
-		this->name = strdup(name);
-	}
+	this->name = name;
 }
 
 void League::setTeams(Team** teams, int size, int numberOfTeams)
@@ -183,11 +178,11 @@ void League::setGames(Game** games, int size, int numberOfGames)
 	}
 }
 
-int League::getTeamIndex(const char* name) const
+int League::getTeamIndex(const string& name) const
 {
 	for (int i = 0; i < sizeTeams; i++)
 	{
-		if (strcmp((*teams[i]).getName(), name) == 0)
+		if ((*teams[i]).getName().compare(name) == 0)
 		{
 			return i;
 		}
