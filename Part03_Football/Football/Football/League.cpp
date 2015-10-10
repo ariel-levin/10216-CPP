@@ -8,77 +8,37 @@ League::League(const string& name, int numberOfTeams, int numberOfGames)
 	setName(name);
 	this->numberOfTeams = numberOfTeams;
 	this->numberOfGames = numberOfGames;
-	this->sizeTeams = 0;
-	this->sizeGames = 0;
-	this->teams = new Team*[numberOfTeams];
-	this->games = new Game*[numberOfGames];
-}
-
-League::League(const League& other) : teams(NULL), games(NULL)
-{
-	*this = other;
-}
-
-League::~League()
-{
-	for (int i = 0; i < sizeTeams; i++)
-	{
-		delete teams[i];
-	}
-	delete[] teams;
-	for (int i = 0; i < sizeGames; i++)
-	{
-		delete games[i];
-	}
-	delete[] games;
-}
-
-League& League::operator=(const League& other)
-{
-	if (this != &other)
-	{
-		setName(other.name);
-		numberOfTeams = other.numberOfTeams;
-		numberOfGames = other.numberOfGames;
-		sizeTeams = other.sizeTeams;
-		sizeGames = other.sizeGames;
-		setTeams(other.teams, other.sizeTeams, other.numberOfTeams);
-		setGames(other.games, other.sizeGames, other.numberOfGames);
-	}
-	return *this;
 }
 
 //Start all the games in the league and remove them from the league
 void League::start()
 {
-	for (int i = 0; i < sizeGames; i++)
+	for (int i = 0; i < (int)games.size(); i++)
 	{
-		games[i]->start();
+		games[i].start();
 	}
-	for (int i = 0; i < sizeGames; i++)
-	{
-		delete games[i];
-	}
-	sizeGames = 0;
+	games.clear();
 }
 
 const League& League::operator+=(const Team& team)
 {
-	if (sizeTeams < numberOfTeams)
+	if ((int)teams.size() < numberOfTeams)
 	{
-		teams[sizeTeams] = new Team(team);
-		++sizeTeams;
+		teams.push_back(team);
 	}
 	return *this;
 }
 
 const League& League::operator-=(const Team& team)
 {
-	for (int i = 0; i < numberOfTeams; i++)
+	vector<Team>::iterator  itr = this->teams.begin();
+	vector<Team>::iterator  itrEnd = this->teams.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if ((*teams[i]).getName().compare(team.getName()) == 0)
+		if ((*itr).getName().compare(team.getName()) == 0)
 		{
-			removeTeamByIndex(i);
+			removeTeamByItr(itr);
 			break;
 		}
 	}
@@ -87,10 +47,9 @@ const League& League::operator-=(const Team& team)
 
 const League& League::operator+=(const Game& game)
 {
-	if (sizeGames < numberOfGames)
+	if ((int)games.size() < numberOfGames)
 	{
-		games[sizeGames] = new Game(game);
-		++sizeGames;
+		games.push_back(game);
 	}
 	return *this;
 }
@@ -102,34 +61,39 @@ void League::addTeam(const Team& team)
 
 const Team& League::getTeam(const string& name) const
 {
-	return *teams[getTeamIndex(name)];
+	return *getTeamItr(name);
 }
 
 void League::removeTeam(const string& name)
 {
-	int index = getTeamIndex(name);
-	removeTeamByIndex(index);
+	vector<Team>::const_iterator itr = getTeamItr(name);
+	removeTeamByItr(itr);
 }
 
-void League::removeTeamByIndex(int index)
+void League::removeTeamByItr(const vector<Team>::const_iterator& itr)
 {
-	if (index >= 0 && index < sizeTeams)
+	if (itr != teams.end())
 	{
-		delete teams[index];
-		for (int i = index; i < sizeTeams - 1; i++)
-		{
-			teams[i] = teams[i + 1];
-		}
-		--sizeTeams;
+		teams.erase(itr);
 	}
 }
 
-Team*const* const League::getAllTeams() const
+int League::getSizeTeams() const
+{
+	return (int)teams.size();
+}
+
+int League::getSizeGames() const
+{
+	return (int)games.size();
+}
+
+vector<Team> const League::getAllTeams() const
 {
 	return teams;
 }
 
-Game*const* const League::getAllGames() const
+vector<Game> const League::getAllGames() const
 {
 	return games;
 }
@@ -144,48 +108,17 @@ void League::setName(const string& name)
 	this->name = name;
 }
 
-void League::setTeams(Team** teams, int size, int numberOfTeams)
+vector<Team>::const_iterator League::getTeamItr(const string& name) const
 {
-	delete[] this->teams;
-	if (size == 0)
-	{
-		this->teams = NULL;
-	}
-	else
-	{
-		this->teams = new Team*[numberOfTeams];
-		for (int i = 0; i < size; i++)
-		{
-			this->teams[i] = new Team(*teams[i]);
-		}
-	}
-}
+	vector<Team>::const_iterator  itr = teams.begin();
+	vector<Team>::const_iterator  itrEnd = teams.end();
 
-void League::setGames(Game** games, int size, int numberOfGames)
-{
-	delete[] this->games;
-	if (size == 0)
+	for (; itr != itrEnd; ++itr)
 	{
-		this->games = NULL;
-	}
-	else
-	{
-		this->games = new Game*[numberOfGames];
-		for (int i = 0; i < size; i++)
+		if ((*itr).getName().compare(name) == 0)
 		{
-			this->games[i] = new Game(*games[i]);
+			return itr;
 		}
 	}
-}
-
-int League::getTeamIndex(const string& name) const
-{
-	for (int i = 0; i < sizeTeams; i++)
-	{
-		if ((*teams[i]).getName().compare(name) == 0)
-		{
-			return i;
-		}
-	}
-	return -1;
+	return itrEnd;
 }

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #include "Team.h"
@@ -13,9 +14,6 @@ class League
 {
 public:
 	League(const string& name, int numberOfTeams, int numberOfGames);
-	League(const League& other);
-	~League();
-	League& operator=(const League& other);
 
 	void start();
 
@@ -27,10 +25,12 @@ public:
 	void addTeam(const Team& team);
 	const Team& getTeam(const string& name) const;
 	void removeTeam(const string& name);
-	void removeTeamByIndex(int index);
+	void removeTeamByItr(const vector<Team>::const_iterator& itr);
 
-	Team*const* const getAllTeams() const;		// #note# read before presentation
-	Game*const* const getAllGames() const;
+	int getSizeTeams() const;
+	int getSizeGames() const;
+	vector<Team> const getAllTeams() const;
+	vector<Game> const getAllGames() const;
 
 	const string& getName() const;
 	void setName(const string& name);
@@ -38,32 +38,27 @@ public:
 	friend ostream& operator<<(ostream& os, const League& league)
 	{
 		os << ">>>>>>>> League name: " << league.name << endl;
-		os << endl << ">>>> Number of Teams: " << league.sizeTeams << "/" << league.numberOfTeams << endl;
-		for (int i = 0; i < league.sizeTeams; i++)
+		os << endl << ">>>> Number of Teams: " << league.getSizeTeams() << "/" << league.numberOfTeams << endl;
+		for (int i = 0; i < league.getSizeTeams(); i++)
 		{
-			os << *league.teams[i] << endl;
+			os << league.teams[i] << endl;
 		}
-		os << endl << ">>>> Number of Games : " << league.sizeGames << "/" << league.numberOfGames << endl;
-		for (int i = 0; i < league.sizeGames; i++)
+		os << endl << ">>>> Number of Games : " << league.getSizeGames() << "/" << league.numberOfGames << endl;
+		for (int i = 0; i < league.getSizeGames(); i++)
 		{
-			os << *league.games[i] << endl;
+			os << league.games[i] << endl;
 		}
 		return os;
 	}
 
 private:
 	int numberOfTeams;
-	int sizeTeams;
-	Team** teams;
+	vector<Team> teams;
 	int numberOfGames;
-	int sizeGames;
-	Game** games;
+	vector<Game> games;
 	string name;
 
-	void setTeams(Team** teams, int size, int numberOfTeams);
-	void setGames(Game** games, int size, int numberOfGames);
-	int getTeamIndex(const string& name) const;
-
+	vector<Team>::const_iterator getTeamItr(const string& name) const;
 };
 
 #endif // !_LEAGUE_H
