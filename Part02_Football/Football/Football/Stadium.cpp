@@ -68,3 +68,9 @@ void Stadium::setLocation(const char* location)
 		this->location = strdup(location);
 	}
 }
+
+ostream& operator<<(ostream& os, const Stadium& league)
+{
+	os << "League - Name: " << league.name << ", Number Of Seats: " << league.numberOfSeats << ", Location: " << league.location << endl;
+	return os;
+}

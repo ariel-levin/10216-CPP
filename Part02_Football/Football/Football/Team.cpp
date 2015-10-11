@@ -184,3 +184,15 @@ int Team::getStaffMemberIndex(const char* name) const
 	}
 	return -1;
 }
+
+ostream& operator<<(ostream& os, const Team& team)
+{
+	os << "Team name: " << team.name << ", Staff size: " << team.size << "/" << team.numberOfStaff << endl;
+	os << "Stadium:" << endl << team.stadium << endl;
+	os << "Staff Members:" << endl;
+	for (int i = 0; i < team.size; i++)
+	{
+		os << *team.staff[i] << endl;
+	}
+	return os;
+}

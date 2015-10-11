@@ -194,3 +194,19 @@ int League::getTeamIndex(const char* name) const
 	}
 	return -1;
 }
+
+ostream& operator<<(ostream& os, const League& league)
+{
+	os << ">>>>>>>> League name: " << league.name << endl;
+	os << endl << ">>>> Number of Teams: " << league.sizeTeams << "/" << league.numberOfTeams << endl;
+	for (int i = 0; i < league.sizeTeams; i++)
+	{
+		os << *league.teams[i] << endl;
+	}
+	os << endl << ">>>> Number of Games : " << league.sizeGames << "/" << league.numberOfGames << endl;
+	for (int i = 0; i < league.sizeGames; i++)
+	{
+		os << *league.games[i] << endl;
+	}
+	return os;
+}

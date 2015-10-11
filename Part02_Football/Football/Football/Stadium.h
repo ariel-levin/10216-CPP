@@ -22,11 +22,7 @@ public:
 	const char* getLocation();
 	void setLocation(const char* location);
 
-	friend ostream& operator<<(ostream& os, const Stadium& league)
-	{
-		os << "League - Name: " << league.name << ", Number Of Seats: " << league.numberOfSeats << ", Location: " << league.location << endl;
-		return os;
-	}
+	friend ostream& operator<<(ostream& os, const Stadium& league);
 
 private:
 	char* name;

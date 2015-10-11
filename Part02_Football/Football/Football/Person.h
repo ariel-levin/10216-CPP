@@ -23,12 +23,7 @@ public:
 	int getId() const;
 
 	virtual void toOs(ostream& os) const {};
-	friend ostream& operator<<(ostream& os, const Person& person)
-	{
-		os << "Name: " << person.name << ", Age: " << person.age << endl;
-		person.toOs(os);
-		return os;
-	}
+	friend ostream& operator<<(ostream& os, const Person& person);
 
 private:
 	char* name;

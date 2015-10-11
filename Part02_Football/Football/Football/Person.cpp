@@ -66,3 +66,10 @@ int Person::getId() const
 {
 	return id;
 }
+
+ostream& operator<<(ostream& os, const Person& person)
+{
+	os << "Name: " << person.name << ", Age: " << person.age << endl;
+	person.toOs(os);
+	return os;
+}

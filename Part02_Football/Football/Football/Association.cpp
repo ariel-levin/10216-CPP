@@ -113,3 +113,19 @@ int Association::getRefereeIndex(const char* name) const
 	}
 	return -1;
 }
+
+ostream& operator<<(ostream& os, const Association& association)
+{
+	os << ">>>>>>>>>>>>>>>> Association" << endl;
+	os << endl << ">>>>>>>> Number of Leagues: " << association.sizeLeagues << "/" << association.numberOfLeagues << endl;
+	for (int i = 0; i < association.sizeLeagues; i++)
+	{
+		os << *association.leagues[i] << endl;
+	}
+	os << endl << ">>>>>>>> Number of Referees: " << association.sizeReferees << "/" << association.numberOfReferees << endl;
+	for (int i = 0; i < association.sizeReferees; i++)
+	{
+		os << *association.referees[i] << endl;
+	}
+	return os;
+}

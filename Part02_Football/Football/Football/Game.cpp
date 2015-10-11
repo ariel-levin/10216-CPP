@@ -46,3 +46,17 @@ void Game::start() const
 		}
 	}
 }
+
+ostream& operator<<(ostream& os, const Game& game)
+{
+	os << ">>>> Game" << endl;
+	os << game.stadium << endl;
+	os << "Team 1:" << endl << game.team1 << endl;
+	os << "Team 2:" << endl << game.team2 << endl;
+	for (int i = 0; i < Game::NUM_OF_REFEREES; i++)
+	{
+		os << "Referee " << (i + 1) << ":" << endl;
+		os << *game.referees[i] << endl;
+	}
+	return os;
+}
