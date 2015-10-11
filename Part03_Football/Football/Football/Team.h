@@ -34,17 +34,7 @@ public:
 	int getPlayerCounter() const;
 	int getSize() const;
 
-	friend ostream& operator<<(ostream& os, const Team& team)
-	{
-		os << "Team name: " << team.name << ", Staff size: " << team.getSize() << "/" << team.numberOfStaff << endl;
-		os << "Stadium:" << endl << team.stadium << endl;
-		os << "Staff Members:" << endl;
-		for (int i = 0; i < team.getSize(); i++)
-		{
-			os << *team.staff[i] << endl;
-		}
-		return os;
-	}
+	friend ostream& operator<<(ostream& os, const Team& team);
 
 private:
 	string name;

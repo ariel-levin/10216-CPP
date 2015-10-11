@@ -35,21 +35,7 @@ public:
 	const string& getName() const;
 	void setName(const string& name);
 
-	friend ostream& operator<<(ostream& os, const League& league)
-	{
-		os << ">>>>>>>> League name: " << league.name << endl;
-		os << endl << ">>>> Number of Teams: " << league.getSizeTeams() << "/" << league.numberOfTeams << endl;
-		for (int i = 0; i < league.getSizeTeams(); i++)
-		{
-			os << league.teams[i] << endl;
-		}
-		os << endl << ">>>> Number of Games : " << league.getSizeGames() << "/" << league.numberOfGames << endl;
-		for (int i = 0; i < league.getSizeGames(); i++)
-		{
-			os << league.games[i] << endl;
-		}
-		return os;
-	}
+	friend ostream& operator<<(ostream& os, const League& league);
 
 private:
 	int numberOfTeams;

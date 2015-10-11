@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Coach" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACIAAAAAAAAAAAAAgAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>coach.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Company" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAACAAAAAAAAAAAAAAAAAEAAJAAAAEBAAAAgA=</HashCode>
+      <FileName>company.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Employee" Collapsed="true">
+    <Position X="7" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAKgQAAKAAAACAAAAAAAAgAgAAAAAAA=</HashCode>
+      <FileName>employee.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="10.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBACAACIAAEAAAgBEggAKAAAAiCAAIAAqAgAAIAAAA=</HashCode>
+      <FileName>game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Judge" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAACAAAAAAAgAAAACAAAA=</HashCode>
+      <FileName>judge.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="League" Collapsed="true">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAABgEgAAgAAAAAIKAABEAAAgAEgABEAAKkAGgAACA=</HashCode>
+      <FileName>league.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Person" Collapsed="true">
+    <Position X="4.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoAAAAAAAEAAAAAADAAAAAAAAAAEAABCIAAkAAAAggA=</HashCode>
+      <FileName>person.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAQABEAAAAAAAAIACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateInvestor" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>privateInvestor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sponsor" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAAACRAQAAAAAKAAAEAAAAAAAAAAAAAgAAgAAAA=</HashCode>
+      <FileName>sponsor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Team" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICAAACAAAAIBAAAAAAACAQBAAAQACEAEMBAgQAgAAAA=</HashCode>
+      <FileName>team.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

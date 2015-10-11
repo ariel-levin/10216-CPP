@@ -170,9 +170,12 @@ void Team::setStaff(vector<StaffMember*> staff, int numberOfStaff)
 	this->staff.clear();
 
 	// clone
-	for (int i = 0; i < (int)staff.size(); i++)
+	itr = staff.begin();
+	itrEnd = staff.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		this->staff.push_back(staff[i]->clone());
+		this->staff.push_back((*itr)->clone());
 	}
 }
 
@@ -189,4 +192,20 @@ vector<StaffMember*>::const_iterator Team::getStaffMemberItr(const string& name)
 		}
 	}
 	return itrEnd;
+}
+
+ostream& operator<<(ostream& os, const Team& team)
+{
+	os << "Team name: " << team.name << ", Staff size: " << team.getSize() << "/" << team.numberOfStaff << endl;
+	os << "Stadium:" << endl << team.stadium << endl;
+	os << "Staff Members:" << endl;
+
+	vector<StaffMember*>::const_iterator  itr = team.staff.begin();
+	vector<StaffMember*>::const_iterator  itrEnd = team.staff.end();
+
+	for (; itr != itrEnd; ++itr)
+	{
+		os << **itr << endl;
+	}
+	return os;
 }

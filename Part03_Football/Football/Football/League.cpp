@@ -14,9 +14,11 @@ League::League(const string& name, int numberOfTeams, int numberOfGames)
 void League::start()
 {
 	try {
-		for (int i = 0; i < (int)games.size(); i++)
+		vector<Game>::const_iterator  gamesItr = games.begin();
+		vector<Game>::const_iterator  gamesItrEnd = games.end();
+		for (; gamesItr != gamesItrEnd; ++gamesItr)
 		{
-			games[i].start();
+			(*gamesItr).start();
 		}
 		games.clear();
 	}
@@ -135,4 +137,26 @@ vector<Team>::const_iterator League::getTeamItr(const string& name) const
 		}
 	}
 	return itrEnd;
+}
+
+ostream& operator<<(ostream& os, const League& league)
+{
+	os << ">>>>>>>> League name: " << league.name << endl;
+	os << endl << ">>>> Number of Teams: " << league.getSizeTeams() << "/" << league.numberOfTeams << endl;
+	vector<Team>::const_iterator  teamsItr = league.teams.begin();
+	vector<Team>::const_iterator  teamsItrEnd = league.teams.end();
+	for (; teamsItr != teamsItrEnd; ++teamsItr)
+	{
+		os << *teamsItr << endl;
+	}
+
+	os << endl << ">>>> Number of Games : " << league.getSizeGames() << "/" << league.numberOfGames << endl;
+	vector<Game>::const_iterator  gamesItr = league.games.begin();
+	vector<Game>::const_iterator  gamesItrEnd = league.games.end();
+	for (; gamesItr != gamesItrEnd; ++gamesItr)
+	{
+		os << *gamesItr << endl;
+	}
+
+	return os;
 }

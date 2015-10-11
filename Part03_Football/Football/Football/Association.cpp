@@ -10,9 +10,11 @@ Association::Association(int numberOfLeagues, int numberOfReferees)
 //Start all the leagues games (go to all the leagues and start them)
 void Association::start()
 {
-	for (int i = 0; i < getSizeLeagues(); i++)
+	vector<League>::iterator  leaguesItr = leagues.begin();
+	vector<League>::iterator  leaguesItrEnd = leagues.end();
+	for (; leaguesItr != leaguesItrEnd; ++leaguesItr)
 	{
-		leagues[i].start();
+		(*leaguesItr).start();
 	}
 }
 
@@ -116,4 +118,26 @@ vector<Referee>::const_iterator Association::getRefereeItr(const char* name) con
 		}
 	}
 	return itrEnd;
+}
+
+ostream& operator<<(ostream& os, const Association& association)
+{
+	os << ">>>>>>>>>>>>>>>> Association" << endl;
+	os << endl << ">>>>>>>> Number of Leagues: " << association.getSizeLeagues() << "/" << association.numberOfLeagues << endl;
+	vector<League>::const_iterator  leaguesItr = association.leagues.begin();
+	vector<League>::const_iterator  leaguesItrEnd = association.leagues.end();
+	for (; leaguesItr != leaguesItrEnd; ++leaguesItr)
+	{
+		os << *leaguesItr << endl;
+	}
+
+	os << endl << ">>>>>>>> Number of Referees: " << association.getSizeReferees() << "/" << association.numberOfReferees << endl;
+	vector<Referee>::const_iterator  refereesItr = association.referees.begin();
+	vector<Referee>::const_iterator  refereesItrEnd = association.referees.end();
+	for (; refereesItr != refereesItrEnd; ++refereesItr)
+	{
+		os << *refereesItr << endl;
+	}
+
+	return os;
 }

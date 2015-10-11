@@ -27,21 +27,7 @@ public:
 	int getSizeLeagues() const;
 	int getSizeReferees() const;
 
-	friend ostream& operator<<(ostream& os, const Association& association)
-	{
-		os << ">>>>>>>>>>>>>>>> Association" << endl;
-		os << endl << ">>>>>>>> Number of Leagues: " << association.getSizeLeagues() << "/" << association.numberOfLeagues << endl;
-		for (int i = 0; i < association.getSizeLeagues(); i++)
-		{
-			os << association.leagues[i] << endl;
-		}
-		os << endl << ">>>>>>>> Number of Referees: " << association.getSizeReferees() << "/" << association.numberOfReferees << endl;
-		for (int i = 0; i < association.getSizeReferees(); i++)
-		{
-			os << association.referees[i] << endl;
-		}
-		return os;
-	}
+	friend ostream& operator<<(ostream& os, const Association& association);
 
 private:
 	vector<League> leagues;

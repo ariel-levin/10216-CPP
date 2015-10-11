@@ -39,3 +39,9 @@ void Stadium::setLocation(const string& location)
 {
 	this->location = location;
 }
+
+ostream& operator<<(ostream& os, const Stadium& league)
+{
+	os << "League - Name: " << league.name << ", Number Of Seats: " << league.numberOfSeats << ", Location: " << league.location << endl;
+	return os;
+}

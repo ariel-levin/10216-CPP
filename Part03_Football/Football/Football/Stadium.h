@@ -20,11 +20,7 @@ public:
 	const string& getLocation();
 	void setLocation(const string& location);
 
-	friend ostream& operator<<(ostream& os, const Stadium& league)
-	{
-		os << "League - Name: " << league.name << ", Number Of Seats: " << league.numberOfSeats << ", Location: " << league.location << endl;
-		return os;
-	}
+	friend ostream& operator<<(ostream& os, const Stadium& league);
 
 private:
 	string name;

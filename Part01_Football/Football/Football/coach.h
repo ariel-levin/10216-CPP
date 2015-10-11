@@ -10,12 +10,15 @@ using namespace std;
 class Coach : public Employee
 {
 public:
-	Coach(const Employee& emp);
+	Coach(const Employee& emp, int seniority);
 
 	friend ostream& operator<<(ostream& os, const Coach& c);
 
-private:
+	void setSeniority(int seniority);	
+	int getSeniority() const			{ return seniority; };
 
+private:
+	int seniority;
 };
 
 #endif	// __COACH_H
